@@ -1,0 +1,45 @@
+{
+  "version": 1,
+  "author": "Facundo Samuel Riccio",
+  "editor": "wokwi",
+  "parts": [
+    { "type": "board-esp32-devkit-c-v4", "id": "esp", "top": 0, "left": 0, "attrs": {} },
+    { "type": "wokwi-wifi-access-point", "id": "wifi", "top": 30.2, "left": -124.6, "attrs": {} }, 
+    {
+      "type": "wokwi-led", "id": "led1", "top": -86.8, "left": 230.4,
+      "attrs": { "color": "green", "label": "LED Verde (23)" }
+    },
+    { "type": "wokwi-resistor", "id": "r1", "top": -47.85, "left": 230.4, "attrs": { "value": "220" } },
+    {
+      "type": "wokwi-led", "id": "led2", "top": -86.8, "left": 299.2,
+      "attrs": { "color": "blue", "label": "LED Azul (2)" }
+    },
+    { "type": "wokwi-resistor", "id": "r2", "top": -47.85, "left": 299.2, "attrs": { "value": "220" } },
+    {
+      "type": "wokwi-dht22", "id": "dht1", "top": 150.8, "left": -120,
+      "attrs": { "temperature": "24.5", "humidity": "45.2" }
+    },
+    {
+      "type": "wokwi-potentiometer", "id": "pot1", "top": 140.2, "left": 20,
+      "attrs": { "label": "Pote (36)" }
+    },
+    {
+        "type": "wokwi-ssd1306", "id": "oled1", "top": -12, "left": 210,"attrs": { "i2cAddress": "0x3C" }
+    }
+  ],
+  "connections": [
+    [ "esp:TX", "$serialMonitor:RX", "", [] ], [ "esp:RX", "$serialMonitor:TX", "", [] ],
+    [ "led1:A", "r1:1", "green", [ "v0" ] ], [ "led1:C", "esp:GND", "black", [ "v0" ] ],
+    [ "r1:2", "esp:23", "green", [ "v0" ] ], [ "led2:A", "r2:1", "blue", [ "v0" ] ],
+    [ "led2:C", "esp:GND", "black", [ "v0" ] ], [ "r2:2", "esp:2", "blue", [ "v0" ] ],
+    [ "dht1:VCC", "esp:3V3", "red", [ "h0" ] ], [ "dht1:GND", "esp:GND", "black", [ "h0" ] ],
+    [ "dht1:SDA", "esp:15", "orange", [ "h0" ] ],
+    [ "pot1:GND", "esp:GND", "black", [ "h0" ] ], [ "pot1:VCC", "esp:3V3", "red", [ "h0" ] ],
+    [ "pot1:SIG", "esp:36", "purple", [ "h0" ] ],
+    [ "oled1:GND", "esp:GND", "black", [ "v0" ] ],
+    [ "oled1:VCC", "esp:3V3", "red", [ "v0" ] ],
+    [ "oled1:SDA", "esp:21", "teal", [ "h-20","v0" ] ],
+    [ "oled1:SCL", "esp:22", "cyan", [ "h-20","v0" ] ]
+  ],
+  "dependencies": {}
+}
